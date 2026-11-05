@@ -6,9 +6,15 @@ type Props = {
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
+  autoComplete?: string;
 };
 
-export function PasswordInput({ value, onChange, placeholder }: Props) {
+export function PasswordInput({
+  value,
+  onChange,
+  placeholder,
+  autoComplete,
+}: Props) {
   const [show, setShow] = useState(false);
 
   return (

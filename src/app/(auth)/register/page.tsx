@@ -21,13 +21,29 @@ type Form = typeof emptyForm;
 type Errors = Partial<Record<keyof Form, string>>;
 
 const textFields = [
-  { key: 'name', label: 'Name', placeholder: 'Enter your name' },
-  { key: 'username', label: 'Username', placeholder: 'Enter your username' },
-  { key: 'email', label: 'Email', placeholder: 'Enter your email' },
+  {
+    key: 'name',
+    label: 'Name',
+    placeholder: 'Enter your name',
+    autoComplete: 'name',
+  },
+  {
+    key: 'username',
+    label: 'Username',
+    placeholder: 'Enter your username',
+    autoComplete: 'off',
+  },
+  {
+    key: 'email',
+    label: 'Email',
+    placeholder: 'Enter your email',
+    autoComplete: 'email',
+  },
   {
     key: 'phone',
     label: 'Number Phone',
     placeholder: 'Enter your number phone',
+    autoComplete: 'tel',
   },
 ] as const;
 
@@ -94,6 +110,7 @@ export default function RegisterPage() {
             value={form[f.key]}
             onChange={(e) => update(f.key, e.target.value)}
             placeholder={f.placeholder}
+            autoComplete={f.autoComplete}
             className='input font-normal'
           />
           {errors[f.key] && (
@@ -108,6 +125,7 @@ export default function RegisterPage() {
           value={form.password}
           onChange={(v) => update('password', v)}
           placeholder='Enter your password'
+          autoComplete='new-password'
         />
         {errors.password && (
           <span className='font-normal text-accent-red'>{errors.password}</span>
@@ -120,6 +138,7 @@ export default function RegisterPage() {
           value={form.confirmPassword}
           onChange={(v) => update('confirmPassword', v)}
           placeholder='Enter your confirm password'
+          autoComplete='new-password'
         />
         {errors.confirmPassword && (
           <span className='font-normal text-accent-red'>
